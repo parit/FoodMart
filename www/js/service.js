@@ -57,34 +57,48 @@ function processDescriptions(data)
 function getFoods(descriptions, callback) {
     // call api and filter foods
     var res = [];
+    var found = false;
     for (var i = 0; i < descriptions.length; i++)
     {
-        $.ajax("https://api.nal.usda.gov/ndb/search/", {
-            data: {
-                q:descriptions[i],
-                offset:0,
-                max:5,
-                ds:"Standard Reference",
-                api_key:"P2S1DkvEkbS9zN2Q5e2s7Qf3EtkiBKqN14pSFgft"
-            },
-            async:false,
-            method:"GET"
-        },function (data) {
-            console.log(data);
-            if (data.list && data.list.item && data.list.item.length > 0) {
-                var arr = [];
-                for (var item in data.list.item) {
-                    if (item.group.indexOf("Fruit") !== -1 || item.group.indexOf("Vegetables") !== -1) {
-                        arr.push(item);
-                    }
-                }
-                if (((arr.length / data.list.item.length) * 100) > 60) 
-                {
-                    res.push(food);
-                }
+        for (var j = 0; j < database.length; j++) {
+            if (descriptions[i].toLowerCase().indexOf(database[j])) {
+                found = true;
+                break;
             }
-        });
-    }
+        }
+        if (found) {
+            res.push(descriptions[i]);
+        }
+    }   
+
+    // for (var i = 0; i < descriptions.length; i++)
+    // {
+    //     $.ajax("https://api.nal.usda.gov/ndb/search/", {
+    //         data: {
+    //             q:descriptions[i],
+    //             offset:0,
+    //             max:5,
+    //             ds:"Standard Reference",
+    //             api_key:"P2S1DkvEkbS9zN2Q5e2s7Qf3EtkiBKqN14pSFgft"
+    //         },
+    //         async:false,
+    //         method:"GET"
+    //     },function (data) {
+    //         console.log(data);
+    //         if (data.list && data.list.item && data.list.item.length > 0) {
+    //             var arr = [];
+    //             for (var item in data.list.item) {
+    //                 if (item.group.indexOf("Fruit") !== -1 || item.group.indexOf("Vegetables") !== -1) {
+    //                     arr.push(item);
+    //                 }
+    //             }
+    //             if (((arr.length / data.list.item.length) * 100) > 60) 
+    //             {
+    //                 res.push(food);
+    //             }
+    //         }
+    //     });
+    // }
     return res.map(function(el){
         return {"description" : el, "days" : 5}
     });
