@@ -27,6 +27,9 @@ var app = {
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
+        document.getElementById("camera").addEventListener("click", function () {
+            app.scanReceipt();
+        })
     },
     // deviceready Event Handler
     //
@@ -45,6 +48,18 @@ var app = {
         receivedElement.setAttribute('style', 'display:block;');
 
         console.log('Received Event: ' + id);
+    },
+    
+    scanReceipt: function() {
+        console.log("Open camera for scanning receipt.")
+        navigator.camera.getPicture(function (imageURI) {
+           console.log('Created image at: ' + imageURI);
+        }, function(message){
+              alert('Failed because: ' + message);    
+        }, {
+            qualityType: 100,
+            destinationType: Camera.DestinationType.FILE_URI,
+        });
     }
 };
 

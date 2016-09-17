@@ -5,18 +5,47 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-    <link rel="stylesheet" href="jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css" />
+    <link rel="stylesheet" href="js/jquery.mobile-1.4.5.css" />
     <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
     <body>
-        <div data-role="page">
+        <div id="main" data-role="page">
             <div data-role="header">FoodMart</div>
-            <div role="main" class="ui-content"></div>
+            <div role="main" class="ui-content">
+                <button id="camera" class="ui-btn ui-corner-all">Scan receipt</button>
+                <a href="#list-expired" class="ui-btn ui-corner-all">
+                List of my products
+                </a>
+            </div>
+            <div data-role="footer">Footer</div>
+        </div>
+        <div id="list-expired" data-role="page">
+            <div data-role="header">FoodMart</div>
+            <div role="main" class="ui-content">
+                <ul data-role="listview">
+                    <li>Banana</li>
+                    <li>Potato</li>
+                    <li>Chicken</li>
+                    <li>Apple</li>
+                    <li>Yoghurt</li>
+                </ul>
+            </div>
+            <div data-role="footer">Footer</div>
+        </div>
+        <div id="list-form" data-role="page">
+            <div data-role="header">FoodMart</div>
+            <div role="main" class="ui-content">
+                <form>
+                     <input type="text" name="text-1" id="text-1" value="">
+                     
+                </form>
+            </div>
             <div data-role="footer">Footer</div>
         </div>
         
         
-        <script src="jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
+        <script src="js/jquery-2.1.0.js"></script>
+        <script src="js/jquery.mobile-1.4.5.min.js"></script>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
     </body>

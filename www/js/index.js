@@ -19,7 +19,9 @@
 var app = {
     // Application Constructor
     initialize: function() {
-        this.bindEvents();
+        this.bindEvents();  
+        var db = window.openDatabase("tastydb", 1); 
+    });
     },
     // Bind Event Listeners
     //
@@ -27,6 +29,9 @@ var app = {
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
+        document.getElementById("camera").addEventListener("click", function () {
+            app.scanReceipt();
+        })
     },
     // deviceready Event Handler
     //
@@ -45,6 +50,32 @@ var app = {
         receivedElement.setAttribute('style', 'display:block;');
 
         console.log('Received Event: ' + id);
+    },
+    
+    scanReceipt: function() {
+        console.log("Open camera for scanning receipt.")
+        navigator.camera.getPicture(function (imageURI) {
+           console.log('Created image at: ' + imageURI);
+        }, function(message){
+              alert('Failed because: ' + message);    
+        }, {
+            qualityType: 100,
+            destinationType: Camera.DestinationType.FILE_URI,
+        });
+    },
+
+    saveNewItems : function(item) {
+        db.transaction(function (tx) {
+            tx.executeSql('INSERT INTO ITEM (name, quantity) VALUES (?, ?)', [item.name, item.quantity], function (tx, result) {
+                console.log(result);
+        }, function (error) {
+            console.log(error);
+        });
+        });
+    },
+
+    createDatabase : function() {
+        tx.executeSql('CREATE TABLE IF NOT EXISTS ITEM (id unique, name, quantity)');
     }
 };
 

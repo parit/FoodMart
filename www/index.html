@@ -9,13 +9,36 @@
     <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
     <body>
-        <div data-role="page">
+        <div id="main" data-role="page">
             <div data-role="header">FoodMart</div>
             <div role="main" class="ui-content">
-                <button class="ui-btn ui-corner-all">Scan receipt</button>
-                <button class="ui-btn ui-corner-all">
+                <button id="camera" class="ui-btn ui-corner-all">Scan receipt</button>
+                <a href="#list-expired" class="ui-btn ui-corner-all">
                 List of my products
-                </button>
+                </a>
+            </div>
+            <div data-role="footer">Footer</div>
+        </div>
+        <div id="list-expired" data-role="page">
+            <div data-role="header">FoodMart</div>
+            <div role="main" class="ui-content">
+                <ul data-role="listview">
+                    <li>Banana</li>
+                    <li>Potato</li>
+                    <li>Chicken</li>
+                    <li>Apple</li>
+                    <li>Yoghurt</li>
+                </ul>
+            </div>
+            <div data-role="footer">Footer</div>
+        </div>
+        <div id="list-form" data-role="page">
+            <div data-role="header">FoodMart</div>
+            <div role="main" class="ui-content">
+                <form>
+                     <input type="text" name="text-1" id="text-1" value="">
+                     
+                </form>
             </div>
             <div data-role="footer">Footer</div>
         </div>
