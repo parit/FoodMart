@@ -23,10 +23,12 @@ function getData(content, callback) {
                 "Content-Length":cont.length,
                 "Content-Type":"application/json"
             }}).fail( function(jqXHR, textStatus, errorThrown) {
+                $.mobile.loading( 'hide');
                 console.log('ERRORS: ' + textStatus + ' ' + errorThrown);
             }).done(function(data){
                 console.log(data);
                 callback(data);
+                $.mobile.loading( 'hide');
             });
 }
 
@@ -114,6 +116,7 @@ function getFoods(descriptions, callback) {
 // call this method after taking the picture
 function process(content) {
     // take picture and call this function;
+    $.mobile.loading( 'show', { theme: "b", text: "foo", textonly: true });
     getData(content, function(data){
         // call api to get descriptions processDescriptions
         var descriptions = processDescriptions(data);
@@ -125,6 +128,8 @@ function process(content) {
         });
         if (foods.length > 0)
             saveNewFoodItems(foods);
+        // hide the spinning wheel
+        // show the count
     });
 }
 
