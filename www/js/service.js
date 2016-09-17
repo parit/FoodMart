@@ -24,9 +24,11 @@ function getData(content, callback) {
                 "Content-Type":"application/json"
             }}).fail( function(jqXHR, textStatus, errorThrown) {
                 console.log('ERRORS: ' + textStatus + ' ' + errorThrown);
+                $.mobile.loading( 'hide');
             }).done(function(data){
                 console.log(data);
                 callback(data);
+                $.mobile.loading( 'hide');
             });
 }
 
@@ -81,6 +83,7 @@ function getFoods(descriptions, callback) {
 // call this method after taking the picture
 function process(content) {
     // take picture and call this function;
+    $.mobile.loading( 'show', { theme: "b", text: "foo", textonly: true });
     getData(content, function(data){
         // call api to get descriptions processDescriptions
         // list of strings
