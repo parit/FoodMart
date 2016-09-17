@@ -106,7 +106,12 @@ function renderExpiredList() {
         ul.append(li);
     });
     $('#list-expired-content').html(ul);
-    $('#list-expired').listview().listview('refresh');
+    ul = $('#list-expired');
+    if (ul.hasClass('ui-listview')) {
+        ul.listview('refresh');
+    } else {
+        ul.trigger('create');
+    }
     $('#list-expired-content ul li').on('swipe', function(e){
         var foodName = $($(this).find('span.foodName')[0]).html();
         var expiring = $($(this).find('span.foodExpiring')[0]).html();
