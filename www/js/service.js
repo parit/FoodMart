@@ -111,8 +111,8 @@ function renderExpiredList() {
     }
     
     $('#list-expired-content ul li').on('swipe', function(e){
-        var foodName = $($(this).find('span.foodName')[0]).html();
-        var expiring = $($(this).find('span.foodExpiring')[0]).html();
+        var foodName = $(this).find('span.foodName').html();
+        var expiring = $(this).find('span.foodExpiring').html();
         removeElementsFromData(foodName, expiring, function(){});
         renderExpiredList();
     });
