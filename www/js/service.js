@@ -100,18 +100,12 @@ function process(content) {
 
 function renderExpiredList() {
     var storeList = retrieveFoodItems();
-    var ul = $('<ul id="list-expired" data-role="listview" data-filter="true" data-filter-placeholder="Search..." data-inset="true"></ul>');
+    var ul = $('#list-expired');
+    ul.html('');
     storeList.forEach(function(element) {
-        var li = $('<li><span class="foodName"/>'+ element.description + '</span> <span class="foodExpiring"> ' + element.expiringOn +'</li>');
-        ul.append(li);
+        ul.append($('<li><span class="foodName"/>'+ element.description + '</span> <span class="foodExpiring"> ' + element.expiringOn +'</li>'));
     });
-    $('#list-expired-content').html(ul);
-    ul = $('#list-expired');
-    if (ul.hasClass('ui-listview')) {
-        ul.listview('refresh');
-    } else {
-        ul.trigger('create');
-    }
+    ul.listview('refersh');
     $('#list-expired-content ul li').on('swipe', function(e){
         var foodName = $($(this).find('span.foodName')[0]).html();
         var expiring = $($(this).find('span.foodExpiring')[0]).html();
