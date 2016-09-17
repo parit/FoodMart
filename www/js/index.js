@@ -53,13 +53,12 @@ var app = {
     scanReceipt: function() {
         console.log("Open camera for scanning receipt.")
         navigator.camera.getPicture(function (imageURI) {
-           console.log('Created image at: ' + imageURI);
            getData(imageURI);
         }, function(message){
               alert('Failed because: ' + message);    
         }, {
             qualityType: 100,
-            destinationType: Camera.DestinationType.FILE_URI,
+            destinationType: Camera.DestinationType.DATA_URL,
         });
     },
 
