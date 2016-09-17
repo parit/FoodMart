@@ -106,12 +106,20 @@ function process(content) {
     });
 }
 
-function render(foods) {
-    retrieveFoodItems();
-}
+function render() 
+{
+    var foods = retrieveFoodItems();
+    var ul = $('ul');
+    food.map(function(f){
+        var diff = currentDate.data() - (new Date()).setDate(f.expiringOn);
+        var li = $('<li><span class="foodName"/><span> </span> <span> ' + f.expiringOn +'</li>');
+        ul.append(li);
+    });
+    $('#listing').html(ul);
+}   
 
     
-function retrieveFoodItems(item) {
+function retrieveFoodItems() {
     db.transaction(function (tx) {
         tx.executeSql('SELECT * FROM FOOD', [], function (tx, result) {
             console.log(result);
@@ -133,11 +141,11 @@ function saveNewFoodItems(item) {
     
 function createDatabase() {
         // ver db = openD
-        db.transaction(function (tx) {
-         tx.executeSql('CREATE TABLE IF NOT EXISTS FOOD (id unique, name, quantity)',function (tx, result) {
-                console.log(result);
+    db.transaction(function (tx) {
+        tx.executeSql('CREATE TABLE IF NOT EXISTS FOOD (id unique, name, quantity)',function (tx, result) {
+            console.log(result);
         }, function (error) {
             console.log(error);
         });
-        });    
+    });
 }
