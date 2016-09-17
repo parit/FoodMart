@@ -1,0 +1,1067 @@
+{
+  "responses": [
+    {
+      "textAnnotations": [
+        {
+          "locale": "en",
+          "description": "WALTON STORES\nORGANIC COURGETTES\n0.41kg E3.49/kg\n1.43\nTRI TROMPETTI\n0.89\nORGANIC CARROTS (BAG)\n1.49\n1.49\nWALNUT BREAD\n1.83\nORGANIC CHEESE\nWALNUTS\n0.335 kg o E2. 99/kg\n1.00\n1.78\nOLIVE OIL\nORGANIC SOUP\n1.79\n1.19\nORGANIC MUSHROOMS\n2.99\nTRUFFLE TORTE\n6.99\n100 FAIRY LIGHT\nTOTAL E22.87\n",
+          "boundingPoly": {
+            "vertices": [
+              {
+                "x": 23,
+                "y": 23
+              },
+              {
+                "x": 229,
+                "y": 23
+              },
+              {
+                "x": 229,
+                "y": 261
+              },
+              {
+                "x": 23,
+                "y": 261
+              }
+            ]
+          }
+        },
+        {
+          "description": "WALTON",
+          "boundingPoly": {
+            "vertices": [
+              {
+                "x": 62,
+                "y": 23
+              },
+              {
+                "x": 122,
+                "y": 23
+              },
+              {
+                "x": 122,
+                "y": 37
+              },
+              {
+                "x": 62,
+                "y": 37
+              }
+            ]
+          }
+        },
+        {
+          "description": "STORES",
+          "boundingPoly": {
+            "vertices": [
+              {
+                "x": 130,
+                "y": 23
+              },
+              {
+                "x": 186,
+                "y": 23
+              },
+              {
+                "x": 186,
+                "y": 37
+              },
+              {
+                "x": 130,
+                "y": 37
+              }
+            ]
+          }
+        },
+        {
+          "description": "ORGANIC",
+          "boundingPoly": {
+            "vertices": [
+              {
+                "x": 24,
+                "y": 59
+              },
+              {
+                "x": 72,
+                "y": 59
+              },
+              {
+                "x": 72,
+                "y": 70
+              },
+              {
+                "x": 24,
+                "y": 70
+              }
+            ]
+          }
+        },
+        {
+          "description": "COURGETTES",
+          "boundingPoly": {
+            "vertices": [
+              {
+                "x": 80,
+                "y": 59
+              },
+              {
+                "x": 151,
+                "y": 59
+              },
+              {
+                "x": 151,
+                "y": 70
+              },
+              {
+                "x": 80,
+                "y": 70
+              }
+            ]
+          }
+        },
+        {
+          "description": "0.41kg",
+          "boundingPoly": {
+            "vertices": [
+              {
+                "x": 38,
+                "y": 73
+              },
+              {
+                "x": 80,
+                "y": 73
+              },
+              {
+                "x": 80,
+                "y": 88
+              },
+              {
+                "x": 38,
+                "y": 88
+              }
+            ]
+          }
+        },
+        {
+          "description": "E3.49/kg",
+          "boundingPoly": {
+            "vertices": [
+              {
+                "x": 102,
+                "y": 73
+              },
+              {
+                "x": 158,
+                "y": 73
+              },
+              {
+                "x": 158,
+                "y": 87
+              },
+              {
+                "x": 102,
+                "y": 87
+              }
+            ]
+          }
+        },
+        {
+          "description": "1.43",
+          "boundingPoly": {
+            "vertices": [
+              {
+                "x": 200,
+                "y": 73
+              },
+              {
+                "x": 227,
+                "y": 72
+              },
+              {
+                "x": 228,
+                "y": 85
+              },
+              {
+                "x": 201,
+                "y": 86
+              }
+            ]
+          }
+        },
+        {
+          "description": "TRI",
+          "boundingPoly": {
+            "vertices": [
+              {
+                "x": 23,
+                "y": 86
+              },
+              {
+                "x": 45,
+                "y": 86
+              },
+              {
+                "x": 45,
+                "y": 101
+              },
+              {
+                "x": 23,
+                "y": 101
+              }
+            ]
+          }
+        },
+        {
+          "description": "TROMPETTI",
+          "boundingPoly": {
+            "vertices": [
+              {
+                "x": 52,
+                "y": 86
+              },
+              {
+                "x": 116,
+                "y": 86
+              },
+              {
+                "x": 116,
+                "y": 101
+              },
+              {
+                "x": 52,
+                "y": 101
+              }
+            ]
+          }
+        },
+        {
+          "description": "0.89",
+          "boundingPoly": {
+            "vertices": [
+              {
+                "x": 199,
+                "y": 87
+              },
+              {
+                "x": 229,
+                "y": 86
+              },
+              {
+                "x": 229,
+                "y": 99
+              },
+              {
+                "x": 199,
+                "y": 100
+              }
+            ]
+          }
+        },
+        {
+          "description": "ORGANIC",
+          "boundingPoly": {
+            "vertices": [
+              {
+                "x": 24,
+                "y": 102
+              },
+              {
+                "x": 73,
+                "y": 102
+              },
+              {
+                "x": 73,
+                "y": 114
+              },
+              {
+                "x": 24,
+                "y": 114
+              }
+            ]
+          }
+        },
+        {
+          "description": "CARROTS",
+          "boundingPoly": {
+            "vertices": [
+              {
+                "x": 79,
+                "y": 102
+              },
+              {
+                "x": 130,
+                "y": 102
+              },
+              {
+                "x": 130,
+                "y": 114
+              },
+              {
+                "x": 79,
+                "y": 114
+              }
+            ]
+          }
+        },
+        {
+          "description": "(BAG)",
+          "boundingPoly": {
+            "vertices": [
+              {
+                "x": 137,
+                "y": 102
+              },
+              {
+                "x": 170,
+                "y": 102
+              },
+              {
+                "x": 170,
+                "y": 114
+              },
+              {
+                "x": 137,
+                "y": 114
+              }
+            ]
+          }
+        },
+        {
+          "description": "1.49",
+          "boundingPoly": {
+            "vertices": [
+              {
+                "x": 200,
+                "y": 103
+              },
+              {
+                "x": 227,
+                "y": 103
+              },
+              {
+                "x": 227,
+                "y": 113
+              },
+              {
+                "x": 200,
+                "y": 113
+              }
+            ]
+          }
+        },
+        {
+          "description": "1.49",
+          "boundingPoly": {
+            "vertices": [
+              {
+                "x": 199,
+                "y": 116
+              },
+              {
+                "x": 228,
+                "y": 115
+              },
+              {
+                "x": 228,
+                "y": 128
+              },
+              {
+                "x": 199,
+                "y": 129
+              }
+            ]
+          }
+        },
+        {
+          "description": "WALNUT",
+          "boundingPoly": {
+            "vertices": [
+              {
+                "x": 23,
+                "y": 116
+              },
+              {
+                "x": 66,
+                "y": 116
+              },
+              {
+                "x": 66,
+                "y": 129
+              },
+              {
+                "x": 23,
+                "y": 129
+              }
+            ]
+          }
+        },
+        {
+          "description": "BREAD",
+          "boundingPoly": {
+            "vertices": [
+              {
+                "x": 73,
+                "y": 116
+              },
+              {
+                "x": 108,
+                "y": 116
+              },
+              {
+                "x": 108,
+                "y": 129
+              },
+              {
+                "x": 73,
+                "y": 129
+              }
+            ]
+          }
+        },
+        {
+          "description": "1.83",
+          "boundingPoly": {
+            "vertices": [
+              {
+                "x": 200,
+                "y": 131
+              },
+              {
+                "x": 228,
+                "y": 131
+              },
+              {
+                "x": 228,
+                "y": 145
+              },
+              {
+                "x": 200,
+                "y": 145
+              }
+            ]
+          }
+        },
+        {
+          "description": "ORGANIC",
+          "boundingPoly": {
+            "vertices": [
+              {
+                "x": 24,
+                "y": 132
+              },
+              {
+                "x": 73,
+                "y": 132
+              },
+              {
+                "x": 73,
+                "y": 143
+              },
+              {
+                "x": 24,
+                "y": 143
+              }
+            ]
+          }
+        },
+        {
+          "description": "CHEESE",
+          "boundingPoly": {
+            "vertices": [
+              {
+                "x": 80,
+                "y": 132
+              },
+              {
+                "x": 122,
+                "y": 132
+              },
+              {
+                "x": 122,
+                "y": 143
+              },
+              {
+                "x": 80,
+                "y": 143
+              }
+            ]
+          }
+        },
+        {
+          "description": "WALNUTS",
+          "boundingPoly": {
+            "vertices": [
+              {
+                "x": 24,
+                "y": 146
+              },
+              {
+                "x": 73,
+                "y": 146
+              },
+              {
+                "x": 73,
+                "y": 159
+              },
+              {
+                "x": 24,
+                "y": 159
+              }
+            ]
+          }
+        },
+        {
+          "description": "0.335",
+          "boundingPoly": {
+            "vertices": [
+              {
+                "x": 38,
+                "y": 161
+              },
+              {
+                "x": 73,
+                "y": 161
+              },
+              {
+                "x": 73,
+                "y": 175
+              },
+              {
+                "x": 38,
+                "y": 175
+              }
+            ]
+          }
+        },
+        {
+          "description": "kg",
+          "boundingPoly": {
+            "vertices": [
+              {
+                "x": 80,
+                "y": 159
+              },
+              {
+                "x": 93,
+                "y": 159
+              },
+              {
+                "x": 93,
+                "y": 176
+              },
+              {
+                "x": 80,
+                "y": 176
+              }
+            ]
+          }
+        },
+        {
+          "description": "o",
+          "boundingPoly": {
+            "vertices": [
+              {
+                "x": 100,
+                "y": 159
+              },
+              {
+                "x": 108,
+                "y": 159
+              },
+              {
+                "x": 108,
+                "y": 176
+              },
+              {
+                "x": 100,
+                "y": 176
+              }
+            ]
+          }
+        },
+        {
+          "description": "E2.",
+          "boundingPoly": {
+            "vertices": [
+              {
+                "x": 114,
+                "y": 161
+              },
+              {
+                "x": 133,
+                "y": 161
+              },
+              {
+                "x": 133,
+                "y": 175
+              },
+              {
+                "x": 114,
+                "y": 175
+              }
+            ]
+          }
+        },
+        {
+          "description": "99/kg",
+          "boundingPoly": {
+            "vertices": [
+              {
+                "x": 136,
+                "y": 161
+              },
+              {
+                "x": 171,
+                "y": 161
+              },
+              {
+                "x": 171,
+                "y": 175
+              },
+              {
+                "x": 136,
+                "y": 175
+              }
+            ]
+          }
+        },
+        {
+          "description": "1.00",
+          "boundingPoly": {
+            "vertices": [
+              {
+                "x": 200,
+                "y": 161
+              },
+              {
+                "x": 227,
+                "y": 161
+              },
+              {
+                "x": 227,
+                "y": 172
+              },
+              {
+                "x": 200,
+                "y": 172
+              }
+            ]
+          }
+        },
+        {
+          "description": "1.78",
+          "boundingPoly": {
+            "vertices": [
+              {
+                "x": 199,
+                "y": 175
+              },
+              {
+                "x": 228,
+                "y": 174
+              },
+              {
+                "x": 228,
+                "y": 187
+              },
+              {
+                "x": 199,
+                "y": 188
+              }
+            ]
+          }
+        },
+        {
+          "description": "OLIVE",
+          "boundingPoly": {
+            "vertices": [
+              {
+                "x": 24,
+                "y": 175
+              },
+              {
+                "x": 59,
+                "y": 175
+              },
+              {
+                "x": 59,
+                "y": 188
+              },
+              {
+                "x": 24,
+                "y": 188
+              }
+            ]
+          }
+        },
+        {
+          "description": "OIL",
+          "boundingPoly": {
+            "vertices": [
+              {
+                "x": 67,
+                "y": 175
+              },
+              {
+                "x": 89,
+                "y": 175
+              },
+              {
+                "x": 89,
+                "y": 188
+              },
+              {
+                "x": 67,
+                "y": 188
+              }
+            ]
+          }
+        },
+        {
+          "description": "ORGANIC",
+          "boundingPoly": {
+            "vertices": [
+              {
+                "x": 24,
+                "y": 189
+              },
+              {
+                "x": 74,
+                "y": 189
+              },
+              {
+                "x": 74,
+                "y": 202
+              },
+              {
+                "x": 24,
+                "y": 202
+              }
+            ]
+          }
+        },
+        {
+          "description": "SOUP",
+          "boundingPoly": {
+            "vertices": [
+              {
+                "x": 80,
+                "y": 191
+              },
+              {
+                "x": 107,
+                "y": 191
+              },
+              {
+                "x": 107,
+                "y": 201
+              },
+              {
+                "x": 80,
+                "y": 201
+              }
+            ]
+          }
+        },
+        {
+          "description": "1.79",
+          "boundingPoly": {
+            "vertices": [
+              {
+                "x": 199,
+                "y": 190
+              },
+              {
+                "x": 228,
+                "y": 189
+              },
+              {
+                "x": 228,
+                "y": 202
+              },
+              {
+                "x": 199,
+                "y": 203
+              }
+            ]
+          }
+        },
+        {
+          "description": "1.19",
+          "boundingPoly": {
+            "vertices": [
+              {
+                "x": 200,
+                "y": 205
+              },
+              {
+                "x": 229,
+                "y": 205
+              },
+              {
+                "x": 229,
+                "y": 218
+              },
+              {
+                "x": 200,
+                "y": 218
+              }
+            ]
+          }
+        },
+        {
+          "description": "ORGANIC",
+          "boundingPoly": {
+            "vertices": [
+              {
+                "x": 24,
+                "y": 206
+              },
+              {
+                "x": 72,
+                "y": 206
+              },
+              {
+                "x": 72,
+                "y": 217
+              },
+              {
+                "x": 24,
+                "y": 217
+              }
+            ]
+          }
+        },
+        {
+          "description": "MUSHROOMS",
+          "boundingPoly": {
+            "vertices": [
+              {
+                "x": 79,
+                "y": 206
+              },
+              {
+                "x": 143,
+                "y": 206
+              },
+              {
+                "x": 143,
+                "y": 217
+              },
+              {
+                "x": 79,
+                "y": 217
+              }
+            ]
+          }
+        },
+        {
+          "description": "2.99",
+          "boundingPoly": {
+            "vertices": [
+              {
+                "x": 198,
+                "y": 219
+              },
+              {
+                "x": 228,
+                "y": 218
+              },
+              {
+                "x": 228,
+                "y": 231
+              },
+              {
+                "x": 198,
+                "y": 232
+              }
+            ]
+          }
+        },
+        {
+          "description": "TRUFFLE",
+          "boundingPoly": {
+            "vertices": [
+              {
+                "x": 23,
+                "y": 220
+              },
+              {
+                "x": 74,
+                "y": 220
+              },
+              {
+                "x": 74,
+                "y": 232
+              },
+              {
+                "x": 23,
+                "y": 232
+              }
+            ]
+          }
+        },
+        {
+          "description": "TORTE",
+          "boundingPoly": {
+            "vertices": [
+              {
+                "x": 80,
+                "y": 220
+              },
+              {
+                "x": 116,
+                "y": 220
+              },
+              {
+                "x": 116,
+                "y": 232
+              },
+              {
+                "x": 80,
+                "y": 232
+              }
+            ]
+          }
+        },
+        {
+          "description": "6.99",
+          "boundingPoly": {
+            "vertices": [
+              {
+                "x": 199,
+                "y": 234
+              },
+              {
+                "x": 228,
+                "y": 233
+              },
+              {
+                "x": 228,
+                "y": 246
+              },
+              {
+                "x": 199,
+                "y": 247
+              }
+            ]
+          }
+        },
+        {
+          "description": "100",
+          "boundingPoly": {
+            "vertices": [
+              {
+                "x": 25,
+                "y": 234
+              },
+              {
+                "x": 45,
+                "y": 234
+              },
+              {
+                "x": 45,
+                "y": 248
+              },
+              {
+                "x": 25,
+                "y": 248
+              }
+            ]
+          }
+        },
+        {
+          "description": "FAIRY",
+          "boundingPoly": {
+            "vertices": [
+              {
+                "x": 52,
+                "y": 234
+              },
+              {
+                "x": 83,
+                "y": 234
+              },
+              {
+                "x": 83,
+                "y": 248
+              },
+              {
+                "x": 52,
+                "y": 248
+              }
+            ]
+          }
+        },
+        {
+          "description": "LIGHT",
+          "boundingPoly": {
+            "vertices": [
+              {
+                "x": 87,
+                "y": 234
+              },
+              {
+                "x": 122,
+                "y": 234
+              },
+              {
+                "x": 122,
+                "y": 248
+              },
+              {
+                "x": 87,
+                "y": 248
+              }
+            ]
+          }
+        },
+        {
+          "description": "TOTAL",
+          "boundingPoly": {
+            "vertices": [
+              {
+                "x": 136,
+                "y": 249
+              },
+              {
+                "x": 173,
+                "y": 249
+              },
+              {
+                "x": 173,
+                "y": 261
+              },
+              {
+                "x": 136,
+                "y": 261
+              }
+            ]
+          }
+        },
+        {
+          "description": "E22.87",
+          "boundingPoly": {
+            "vertices": [
+              {
+                "x": 186,
+                "y": 249
+              },
+              {
+                "x": 228,
+                "y": 249
+              },
+              {
+                "x": 228,
+                "y": 261
+              },
+              {
+                "x": 186,
+                "y": 261
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
