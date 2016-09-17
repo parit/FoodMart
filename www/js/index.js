@@ -27,15 +27,17 @@ var app = {
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
-        document.getElementById("camera-receipt").addEventListener("click", function () {
+        $("#camera-receipt").on("click", function () {
             app.scanReceipt();
         });
-        document.getElementById("camera-expired").addEventListener("click", function () {
+        $("#camera-expired").on("click", function () {
             app.scanReceipt();
         });
         
-        document.getElementById("list-expired").addEventListener("load", function () {
+        $("#list-expired-buuton").on("click", function () {
+            console.log("Show expired list.");
             renderExpiredList();
+            $.mobile.changePage("#expired-list-page");
         });
     },
     // deviceready Event Handler

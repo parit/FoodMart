@@ -8,28 +8,21 @@
     <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
     <body>
-        <div id="main" data-role="page">
+        <div id="main-page" data-role="page">
             <div data-role="header" class="nav"><h1>FoodMart</h1></div>
             <div role="main" class="ui-content">
                 <button id="camera-receipt" class="ui-btn ui-corner-all">Scan new receipt</button>
-                <a href="#list-expired" class="ui-btn ui-corner-all">Expiring products <span class="ui-li-count">12</span></a>
+                <button id="list-expired-button" class="ui-btn ui-corner-all">Expiring products <span class="ui-li-count">12</span></button>
                 <button id="camera-checkout" class="ui-btn ui-corner-all">Checkout products</button>
             </div>
             <div data-position="fixed" data-role="footer" class="nav"><h4> </h4></div>
         </div>
-        <div id="list-expired" data-role="page">
+        <div id="list-expired-page" data-role="page">
             <div data-role="header" class="nav">
                 <a href="index.html" data-rel="back" class="ui-btn-left">Back</a>
                 <h1>FoodMart</h1>
             </div>
-            <div role="main" class="ui-content">
-                <ul data-role="listview" data-filter="true" data-filter-placeholder="Search..." data-inset="true">
-                    <li>Banana</li>
-                    <li>Potato</li>
-                    <li>Chicken</li>
-                    <li>Apple</li>
-                    <li>Yoghurt</li>
-                </ul>
+            <div id="list-expired-page" role="main" class="ui-content">
             </div>
             <div data-position="fixed" class="nav" data-role="footer"><h4> </h4></div>
         </div>
