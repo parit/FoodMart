@@ -1,5 +1,5 @@
 
-function getData(content) {
+function getData(content, callback) {
     var CV_URL = "https://vision.googleapis.com/v1/images:annotate?key=AIzaSyDICKCdc31gkFfpIwtT4XmKE5ADabCbkjw";
  
     var request = {
@@ -26,17 +26,18 @@ function getData(content) {
                 console.log('ERRORS: ' + textStatus + ' ' + errorThrown);
             }).done(function(data){
                 console.log(data);
+                callback(data);
             });
 }
 
-function processDescriptions(response) 
+function processDescriptions(data) 
 {
     var alreadyConsideredIndexes = [];
     var descriptions = [];
-    var textAnnotations = responses[0].textAnnotations; 
+    var textAnnotations = data.responses[0].textAnnotations; 
 
     for (var i = 0; i < textAnnotations.length; i++) {
-        var description = [textAnnotations.description];
+        var description = [textAnnotations[i].description];
         for (var j = i + 1; j < textAnnotations.length; j++) {
             if (alreadyConsideredIndexes.indexOf(j) == -1) 
             {
@@ -56,11 +57,11 @@ function processDescriptions(response)
 function getFoods(descriptions, callback) {
     // call api and filter foods
     var res = [];
-    for (var food in foods)
+    for (var i = 0; i < descriptions.length; i++)
     {
         $.ajax("https://api.nal.usda.gov/ndb/search/", {
             data: {
-                q:food,
+                q:descriptions[i],
                 offset:0,
                 max:5,
                 ds:"Standard Reference",
@@ -124,11 +125,19 @@ function render()
     });
 }
 
-function removeElementsFromData(foodName, foodExpring) {
-
+function removeElementsFromData(foodName, foodExpiring) {
+    var db =  window.openDatabase("dbtasty", 1);
+    db.transaction(function (tx) {
+        tx.executeSql('DELETE FROM FOOD WHERE name=? and expiring?', [foodName, foodExpiring], function (tx, result) {
+            console.log(result);
+        }, function (error) {
+            console.log(error);
+        });
+    });
 }
     
 function retrieveFoodItems() {
+    var db =  window.openDatabase("dbtasty", 1);
     db.transaction(function (tx) {
         tx.executeSql('SELECT * FROM FOOD', [], function (tx, result) {
             console.log(result);
@@ -138,20 +147,23 @@ function retrieveFoodItems() {
     });
 }
 
-function saveNewFoodItems(item) {
-    db.transaction(function (tx) {
-        tx.executeSql('INSERT INTO FOOD (name, quantity) VALUES (?, ?)', [item.name, item.quantity], function (tx, result) {
+function saveNewFoodItems(items) {
+    var db =  window.openDatabase("dbtasty", 1);
+    db.transaction(function (tx, items) {
+        for(var i = 0; i < items.length; i++) {
+            tx.executeSql('INSERT INTO FOOD (name, expiring) VALUES (?, ?)', [items[i].name, item[i].expiring], function (tx, result) {
                 console.log(result);
-        }, function (error) {
-            console.log(error);
-        });
+            }, function (error) {
+                console.log(error);
+            });
+        }
     });
 }
     
 function createDatabase() {
-        // ver db = openD
+    var db =  window.openDatabase("dbtasty", 1);
     db.transaction(function (tx) {
-        tx.executeSql('CREATE TABLE IF NOT EXISTS FOOD (id unique, name, quantity)',function (tx, result) {
+        tx.executeSql('CREATE TABLE IF NOT EXISTS FOOD (name, expiring)',function (tx, result) {
             console.log(result);
         }, function (error) {
             console.log(error);

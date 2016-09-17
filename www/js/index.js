@@ -27,9 +27,12 @@ var app = {
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
-        document.getElementById("camera").addEventListener("click", function () {
+        document.getElementById("camera-receipt").addEventListener("click", function () {
             app.scanReceipt();
-        })
+        });
+        document.getElementById("camera-expired").addEventListener("click", function () {
+            app.scanReceipt();
+        });
     },
     // deviceready Event Handler
     //
@@ -37,6 +40,7 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
+        createDatabase();
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {

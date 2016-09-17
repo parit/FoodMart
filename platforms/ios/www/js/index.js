@@ -27,9 +27,12 @@ var app = {
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
-        document.getElementById("camera").addEventListener("click", function () {
+        document.getElementById("camera-receipt").addEventListener("click", function () {
             app.scanReceipt();
-        })
+        });
+        document.getElementById("camera-expired").addEventListener("click", function () {
+            app.scanReceipt();
+        });
     },
     // deviceready Event Handler
     //
@@ -37,6 +40,7 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
+        createDatabase();
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
@@ -53,7 +57,7 @@ var app = {
     scanReceipt: function() {
         console.log("Open camera for scanning receipt.")
         navigator.camera.getPicture(function (imageURI) {
-           getData(imageURI);
+           process(imageURI);
         }, function(message){
               alert('Failed because: ' + message);    
         }, {
@@ -61,26 +65,6 @@ var app = {
             destinationType: Camera.DestinationType.DATA_URL,
         });
     },
-
-    saveNewItems : function(item) {
-        db.transaction(function (tx) {
-            tx.executeSql('INSERT INTO ITEM (name, quantity) VALUES (?, ?)', [item.name, item.quantity], function (tx, result) {
-                console.log(result);
-        }, function (error) {
-            console.log(error);
-        });
-        });
-    },
-
-    createDatabase : function() {
-        db.transaction(function (tx) {
-         tx.executeSql('CREATE TABLE IF NOT EXISTS ITEM (id unique, name, quantity)',function (tx, result) {
-                console.log(result);
-        }, function (error) {
-            console.log(error);
-        });
-        });    
-    }
 };
 
 app.initialize();

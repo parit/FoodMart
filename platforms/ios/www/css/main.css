@@ -1,1 +1,6 @@
+.nav {
+    background-color: cadetblue !important;
+}
 
+
+[data-role=footer]{top:10; position:absolute !important; top: auto !important; width:100%;} 
