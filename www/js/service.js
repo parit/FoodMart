@@ -103,7 +103,7 @@ function renderExpiredList() {
     var ul = $('#list-expired');
     ul.html('');
     storeList.forEach(function(element) {
-        ul.append($('<li><span class="foodName"/>'+ element.description + '</span> <span class="foodExpiring"> ' + element.expiringOn +'</li>'));
+        ul.append($('<li><span class="foodName">'+ element.description + '</span> <span class="foodExpiring"> ' + element.expiringOn +'</li>'));
     });
     
     if (ul.hasClass('ui-listview')) {
