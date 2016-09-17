@@ -57,17 +57,14 @@ function processDescriptions(data)
 function getFoods(descriptions, callback) {
     // call api and filter foods
     var res = [];
-
     var database = ["cheese", "milk", "bread", "banana"];
     console.log(database);
-
-
     for (var i = 0; i < descriptions.length; i++)
     {
         var found = false;
         for (var j = 0; j < database.length; j++) {
             // Cloud vision API sometimes outputs the whole text in one object randomly.
-            if ((descriptions[i].toLowerCase().indexOf(database[j])!== -1) && descriptions[i].length<15) {
+            if ((descriptions[i].toLowerCase().indexOf(database[j])!== -1) && descriptions[i].length < 15) {
                 found = true;
                 console.log(descriptions[i]);
                 break;
@@ -77,35 +74,6 @@ function getFoods(descriptions, callback) {
             res.push(descriptions[i]);
         }
     }   
-
-    // for (var i = 0; i < descriptions.length; i++)
-    // {
-    //     $.ajax("https://api.nal.usda.gov/ndb/search/", {
-    //         data: {
-    //             q:descriptions[i],
-    //             offset:0,
-    //             max:5,
-    //             ds:"Standard Reference",
-    //             api_key:"P2S1DkvEkbS9zN2Q5e2s7Qf3EtkiBKqN14pSFgft"
-    //         },
-    //         async:false,
-    //         method:"GET"
-    //     },function (data) {
-    //         console.log(data);
-    //         if (data.list && data.list.item && data.list.item.length > 0) {
-    //             var arr = [];
-    //             for (var item in data.list.item) {
-    //                 if (item.group.indexOf("Fruit") !== -1 || item.group.indexOf("Vegetables") !== -1) {
-    //                     arr.push(item);
-    //                 }
-    //             }
-    //             if (((arr.length / data.list.item.length) * 100) > 60) 
-    //             {
-    //                 res.push(food);
-    //             }
-    //         }
-    //     });
-    // }
     return res.map(function(el){
         return {"description" : el, "days" : 5}
     });
@@ -116,83 +84,62 @@ function process(content) {
     // take picture and call this function;
     getData(content, function(data){
         // call api to get descriptions processDescriptions
+        // list of strings
         var descriptions = processDescriptions(data);
         // call api to get foods getFoods
+        // [{"description" : "", "days" : ""}] 
         var foods = getFoods(descriptions);
         foods = foods.map(function(food){
             var expiringOn = (new Date()).setDate((new Date()).getDate() + food.days);
             return { expiringOn: (new Date()).toLocaleDateString(), description: food.description};
         });
         if (foods.length > 0)
+            // [{"description" : "", "expiringOn" : ""}]
             saveNewFoodItems(foods);
     });
 }
 
 function renderExpiredList() {
-    retrieveFoodItems(function(food) {
-        var ul = $('<ul id="list-expired" data-role="listview" data-filter="true" data-filter-placeholder="Search..." data-inset="true"></ul>')
-        food.map(function(f){
-            var li = $('<li><span class="foodName"/>'+ f.name + '</span> <span class="foodExpiring"> ' + f.expiring +'</li>');
-            ul.append(li);
-        });
-        $('#list-expired-content').html(ul);
-        $('#list-expired-content ul li').on('swipe', function(e){
-            var foodName = $($(this).find('span.foodName')[0]).html();
-            var expiring = $($(this).find('span.foodExpiring')[0]).html();
-            removeElementsFromData(foodName, expiring, function(){});
-            render();
-        });
-    }); 
+    var storeList = retrieveFoodItems();
+    var ul = $('<ul id="list-expired" data-role="listview" data-filter="true" data-filter-placeholder="Search..." data-inset="true"></ul>');
+    storeList.forEach(function(element) {
+        var li = $('<li><span class="foodName"/>'+ f.description + '</span> <span class="foodExpiring"> ' + f.expiringOn +'</li>');
+        ul.append(li);
+    });
+    $('#list-expired-content').html(ul);
+    $('#list-expired-content ul li').on('swipe', function(e){
+        var foodName = $($(this).find('span.foodName')[0]).html();
+        var expiring = $($(this).find('span.foodExpiring')[0]).html();
+        removeElementsFromData(foodName, expiring, function(){});
+        renderExpiredList();
+    });
 }
 
-function removeElementsFromData(foodName, foodExpiring, callback) {
-    var db =  window.openDatabase("dbtasty", 1, "Test DB", 1000000);
-    db.transaction(function (tx) {
-        tx.executeSql('DELETE FROM FOOD WHERE name=? and expiring=?', [foodName, foodExpiring], 
-        function (tx, result) {
-            console.log(result.rows);
-            callback(result.rows);
-        }, dbError);
+function removeElementsFromData(foodName, foodExpiring) 
+{
+    var arr = [];
+    var store = retrieveFoodItems();
+    store.forEach(function(element){
+        if (element.description !== foodName || element.expiringOn !== foodExpiring)
+                arr.push(element);
     });
+    setStoreItems(arr);
+}
+
+function setStoreItems(arr) {
+    localStorage.setItem('store', JSON.stringify(arr));
 }
     
-function retrieveFoodItems(callback) {
-    var db =  window.openDatabase("dbtasty", 1, "Test DB", 1000000);
-    db.transaction(function (tx) {
-        tx.executeSql('SELECT * FROM FOOD', [], 
-        function (tx, result) {
-            console.log(result.rows);
-            var items = new Array();
-            for (var i=0; i<result.rows.length; i++){
-                items.push(result.rows.item(i));
-            }
-            callback(items);
-        }, dbError);
-    });
+function retrieveFoodItems() {
+    var store = localStorage.getItem('store');
+    return store ? JSON.parse(store) : [];
 }
-
-function saveNewFoodItems(items, callback) {
-    var db =  window.openDatabase("dbtasty", 1, "Test DB", 1000000);
-    db.transaction(function (tx) {
-        for(var i = 0; i < items.length; i++) {
-            tx.executeSql('INSERT INTO FOOD (name, expiring) VALUES (?, ?)', [items[i].description, items[i].expiringOn],
-            function (tx, result) {
-                console.log(result);
-            }, dbError);
-        }
+// [{"description" : "", "expiringOn" : ""}]
+function saveNewFoodItems(items) {
+    var store = localStorage.getItem('store');
+    store = store ? JSON.stringify(store) : [];
+    items.forEach(function(element) {
+        store.push(element);   
     });
-}
-    
-function createDatabase() {
-    var db =  window.openDatabase("dbtasty", 1, "Test DB", 1000000);
-    db.transaction(function (tx) {
-        tx.executeSql('CREATE TABLE IF NOT EXISTS FOOD (name, expiring)',
-        function (tx, result) {
-            console.log(result);
-        }, dbError);
-    });
-}
-
-function dbError(err){
-    console.log("QUERY ERROR: " + err.message + "\nCode=" + err.code);
+    setStoreItems(store);
 }
