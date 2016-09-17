@@ -57,14 +57,13 @@ function processDescriptions(data)
 function getFoods(descriptions, callback) {
     // call api and filter foods
     var res = [];
-    var database = ["cheese", "milk", "bread", "banana"];
-    console.log(database);
+    console.log(food_db);
     for (var i = 0; i < descriptions.length; i++)
     {
         var found = false;
-        for (var j = 0; j < database.length; j++) {
+        for (var j = 0; j < food_db.length; j++) {
             // Cloud vision API sometimes outputs the whole text in one object randomly.
-            if ((descriptions[i].toLowerCase().indexOf(database[j])!== -1) && descriptions[i].length < 15) {
+            if ((descriptions[i].toLowerCase().indexOf(food_db[j])!== -1) && descriptions[i].length < 15) {
                 found = true;
                 console.log(descriptions[i]);
                 break;
@@ -103,10 +102,11 @@ function renderExpiredList() {
     var storeList = retrieveFoodItems();
     var ul = $('<ul id="list-expired" data-role="listview" data-filter="true" data-filter-placeholder="Search..." data-inset="true"></ul>');
     storeList.forEach(function(element) {
-        var li = $('<li><span class="foodName"/>'+ f.description + '</span> <span class="foodExpiring"> ' + f.expiringOn +'</li>');
+        var li = $('<li><span class="foodName"/>'+ element.description + '</span> <span class="foodExpiring"> ' + element.expiringOn +'</li>');
         ul.append(li);
     });
     $('#list-expired-content').html(ul);
+    $('#list-expired').listview().listview('refresh');
     $('#list-expired-content ul li').on('swipe', function(e){
         var foodName = $($(this).find('span.foodName')[0]).html();
         var expiring = $($(this).find('span.foodExpiring')[0]).html();
@@ -128,6 +128,8 @@ function removeElementsFromData(foodName, foodExpiring)
 
 function setStoreItems(arr) {
     localStorage.setItem('store', JSON.stringify(arr));
+    var count_el = $('#count_items');
+    count_el.html(arr.length);
 }
     
 function retrieveFoodItems() {
@@ -137,7 +139,7 @@ function retrieveFoodItems() {
 // [{"description" : "", "expiringOn" : ""}]
 function saveNewFoodItems(items) {
     var store = localStorage.getItem('store');
-    store = store ? JSON.stringify(store) : [];
+    store = store ? JSON.parse(store) : [];
     items.forEach(function(element) {
         store.push(element);   
     });

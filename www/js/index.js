@@ -30,23 +30,42 @@ var app = {
         $("#camera-receipt").on("click", function () {
             app.scanReceipt();
         });
+        $("#clean-db").on("click", function () {
+            localStorage.setItem('store', []);
+            var count_el = $('#count_items');
+            count_el.html(0);
+        });
         $("#camera-expired").on("click", function () {
             app.scanReceipt();
         });
-        
+
         $("#list-expired-button").on("click", function () {
             console.log("Show expired list.");
             renderExpiredList();
             $.mobile.changePage("#list-expired-page");
         });
+        var store = localStorage.getItem("store");
+        var count_el = $('#count_items');
+
+        if(store) {
+            var count = JSON.parse(store).length;
+            count_el.html(count);
+            if (count === 0) {
+                    count_el.hide()
+            } else {
+                count_el.show()
+            }
+        }else{
+            count_el.hide()
+        }
     },
+
     // deviceready Event Handler
     //
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
-        createDatabase();
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
