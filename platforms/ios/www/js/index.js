@@ -19,7 +19,7 @@
 var app = {
     // Application Constructor
     initialize: function() {
-        this.bindEvents();
+        this.bindEvents();  
     },
     // Bind Event Listeners
     //
@@ -54,12 +54,33 @@ var app = {
         console.log("Open camera for scanning receipt.")
         navigator.camera.getPicture(function (imageURI) {
            console.log('Created image at: ' + imageURI);
+           getData(imageURI);
         }, function(message){
               alert('Failed because: ' + message);    
         }, {
             qualityType: 100,
             destinationType: Camera.DestinationType.FILE_URI,
         });
+    },
+
+    saveNewItems : function(item) {
+        db.transaction(function (tx) {
+            tx.executeSql('INSERT INTO ITEM (name, quantity) VALUES (?, ?)', [item.name, item.quantity], function (tx, result) {
+                console.log(result);
+        }, function (error) {
+            console.log(error);
+        });
+        });
+    },
+
+    createDatabase : function() {
+        db.transaction(function (tx) {
+         tx.executeSql('CREATE TABLE IF NOT EXISTS ITEM (id unique, name, quantity)',function (tx, result) {
+                console.log(result);
+        }, function (error) {
+            console.log(error);
+        });
+        });    
     }
 };
 

@@ -20,8 +20,6 @@ var app = {
     // Application Constructor
     initialize: function() {
         this.bindEvents();  
-        var db = window.openDatabase("tastydb", 1); 
-    });
     },
     // Bind Event Listeners
     //
@@ -56,6 +54,7 @@ var app = {
         console.log("Open camera for scanning receipt.")
         navigator.camera.getPicture(function (imageURI) {
            console.log('Created image at: ' + imageURI);
+           getData(imageURI);
         }, function(message){
               alert('Failed because: ' + message);    
         }, {
@@ -75,7 +74,13 @@ var app = {
     },
 
     createDatabase : function() {
-        tx.executeSql('CREATE TABLE IF NOT EXISTS ITEM (id unique, name, quantity)');
+        db.transaction(function (tx) {
+         tx.executeSql('CREATE TABLE IF NOT EXISTS ITEM (id unique, name, quantity)',function (tx, result) {
+                console.log(result);
+        }, function (error) {
+            console.log(error);
+        });
+        });    
     }
 };
 
