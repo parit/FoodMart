@@ -57,9 +57,6 @@ function processDescriptions(data)
 function getFoods(descriptions, callback) {
     // call api and filter foods
     var res = [];
-    var found = false;
-
-
 
     var database = ["cheese", "milk", "bread", "banana"];
     console.log(database);
@@ -67,6 +64,7 @@ function getFoods(descriptions, callback) {
 
     for (var i = 0; i < descriptions.length; i++)
     {
+        var found = false;
         for (var j = 0; j < database.length; j++) {
             // Cloud vision API sometimes outputs the whole text in one object randomly.
             if ((descriptions[i].toLowerCase().indexOf(database[j])!== -1) && descriptions[i].length<15) {
@@ -175,9 +173,9 @@ function retrieveFoodItems(callback) {
 
 function saveNewFoodItems(items, callback) {
     var db =  window.openDatabase("dbtasty", 1, "Test DB", 1000000);
-    db.transaction(function (tx, items) {
+    db.transaction(function (tx) {
         for(var i = 0; i < items.length; i++) {
-            tx.executeSql('INSERT INTO FOOD (name, expiring) VALUES (?, ?)', [items[i].name, item[i].expiring], 
+            tx.executeSql('INSERT INTO FOOD (name, expiring) VALUES (?, ?)', [items[i].description, items[i].expiringOn],
             function (tx, result) {
                 console.log(result);
             }, dbError);
