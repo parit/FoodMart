@@ -33,6 +33,10 @@ var app = {
         document.getElementById("camera-expired").addEventListener("click", function () {
             app.scanReceipt();
         });
+        
+        document.getElementById("list-expired").addEventListener("load", function () {
+            renderExpiredList();
+        });
     },
     // deviceready Event Handler
     //

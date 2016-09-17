@@ -107,8 +107,7 @@ function process(content) {
     });
 }
 
-function render() 
-{
+function renderExpiredList() {
     var foods = retrieveFoodItems();
     var ul = $('ul');
     food.map(function(f){
@@ -126,7 +125,7 @@ function render()
 }
 
 function removeElementsFromData(foodName, foodExpiring) {
-    var db =  window.openDatabase("dbtasty", 1);
+    var db =  window.openDatabase("dbtasty", 1, "Test DB", 1000000);
     db.transaction(function (tx) {
         tx.executeSql('DELETE FROM FOOD WHERE name=? and expiring?', [foodName, foodExpiring], function (tx, result) {
             console.log(result);
@@ -137,7 +136,7 @@ function removeElementsFromData(foodName, foodExpiring) {
 }
     
 function retrieveFoodItems() {
-    var db =  window.openDatabase("dbtasty", 1);
+    var db =  window.openDatabase("dbtasty", 1, "Test DB", 1000000);
     db.transaction(function (tx) {
         tx.executeSql('SELECT * FROM FOOD', [], function (tx, result) {
             console.log(result);
@@ -148,7 +147,7 @@ function retrieveFoodItems() {
 }
 
 function saveNewFoodItems(items) {
-    var db =  window.openDatabase("dbtasty", 1);
+    var db =  window.openDatabase("dbtasty", 1, "Test DB", 1000000);
     db.transaction(function (tx, items) {
         for(var i = 0; i < items.length; i++) {
             tx.executeSql('INSERT INTO FOOD (name, expiring) VALUES (?, ?)', [items[i].name, item[i].expiring], function (tx, result) {
@@ -161,7 +160,7 @@ function saveNewFoodItems(items) {
 }
     
 function createDatabase() {
-    var db =  window.openDatabase("dbtasty", 1);
+    var db =  window.openDatabase("dbtasty", 1, "Test DB", 1000000);
     db.transaction(function (tx) {
         tx.executeSql('CREATE TABLE IF NOT EXISTS FOOD (name, expiring)',function (tx, result) {
             console.log(result);
