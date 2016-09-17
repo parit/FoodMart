@@ -58,11 +58,20 @@ function getFoods(descriptions, callback) {
     // call api and filter foods
     var res = [];
     var found = false;
+
+
+
+    var database = ["cheese", "milk", "bread", "banana"];
+    console.log(database);
+
+
     for (var i = 0; i < descriptions.length; i++)
     {
         for (var j = 0; j < database.length; j++) {
-            if (descriptions[i].toLowerCase().indexOf(database[j])) {
+            // Cloud vision API sometimes outputs the whole text in one object randomly.
+            if ((descriptions[i].toLowerCase().indexOf(database[j])!== -1) && descriptions[i].length<15) {
                 found = true;
+                console.log(descriptions[i]);
                 break;
             }
         }
@@ -113,7 +122,7 @@ function process(content) {
         // call api to get foods getFoods
         var foods = getFoods(descriptions);
         foods = foods.map(function(food){
-            var expiringOn = (new Date()).setDate((new Date()).date() + food.days);
+            var expiringOn = (new Date()).setDate((new Date()).getDate() + food.days);
             return { expiringOn: (new Date()).toLocaleDateString(), description: food.description};
         });
         if (foods.length > 0)
