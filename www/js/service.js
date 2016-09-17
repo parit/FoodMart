@@ -134,11 +134,11 @@ function renderExpiredList() {
     retrieveFoodItems(function(food) {
         var ul = $('<ul id="list-expired" data-role="listview" data-filter="true" data-filter-placeholder="Search..." data-inset="true"></ul>')
         food.map(function(f){
-            var li = $('<li><span class="foodName"/>'+ f.description + '<span> </span> <span class="foodExpiring"> ' + f.expiringOn +'</li>');
+            var li = $('<li><span class="foodName"/>'+ f.name + '</span> <span class="foodExpiring"> ' + f.expiring +'</li>');
             ul.append(li);
         });
-        $('#list-expired-page').html(ul);
-        $('#list-expired-page ul li').on('swipe', function(e){
+        $('#list-expired-content').html(ul);
+        $('#list-expired-content ul li').on('swipe', function(e){
             var foodName = $($(this).find('span.foodName')[0]).html();
             var expiring = $($(this).find('span.foodExpiring')[0]).html();
             removeElementsFromData(foodName, expiring, function(){});

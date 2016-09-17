@@ -34,10 +34,10 @@ var app = {
             app.scanReceipt();
         });
         
-        $("#list-expired-buuton").on("click", function () {
+        $("#list-expired-button").on("click", function () {
             console.log("Show expired list.");
             renderExpiredList();
-            $.mobile.changePage("#expired-list-page");
+            $.mobile.changePage("#list-expired-page");
         });
     },
     // deviceready Event Handler
