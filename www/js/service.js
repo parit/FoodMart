@@ -55,6 +55,10 @@ function processDescriptions(response)
 
 function getFoods(descriptions, callback) {
     // call api and filter foods
+   for (var i = 0; i < descriptions; i++) {
+    alert(descriptions[i]);
+    //Do something
+   }
     
 }
 
@@ -69,10 +73,10 @@ function process(content) {
             var foods = [];
             foods = foods.map(function(food){
                 var expiringOn = (new Date()).setDate((new Date()).date() + food.days);
-                return { expiringOn: (new Date()).toLocaleDateString(), description: food};
+                return { expiringOn: (new Date()).toLocaleDateString(), description: food.description};
             });
 
-            // add these foods to the store addFoodToTheStore
+            saveNewFoodItems(foods);
 
             // call render based on whats in the store
         });
@@ -80,5 +84,40 @@ function process(content) {
 }
 
 function render(foods) {
-    foods
+    retrieveFoodItems();
+}
+
+    
+function retrieveFoodItems(item) {
+        db.transaction(function (tx) {
+            tx.executeSql('SELECT * FROM FOOD', [], function (tx, result) {
+                console.log(result);
+                
+        }, function (error) {
+            console.log(error);
+        });
+        });
+}
+
+function saveNewFoodItems(item) {
+        db.transaction(function (tx) {
+            tx.executeSql('INSERT INTO FOOD (name, quantity) VALUES (?, ?)', [item.name, item.quantity], function (tx, result) {
+                console.log(result);
+        }, function (error) {
+            console.log(error);
+        });
+        });
+}
+    
+function 
+
+function createDatabase() {
+        ver db = openD
+        db.transaction(function (tx) {
+         tx.executeSql('CREATE TABLE IF NOT EXISTS FOOD (id unique, name, quantity)',function (tx, result) {
+                console.log(result);
+        }, function (error) {
+            console.log(error);
+        });
+        });    
 }
