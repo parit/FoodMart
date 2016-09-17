@@ -130,10 +130,7 @@ function removeElementsFromData(foodName, foodExpiring)
 }
 
 function setStoreItems(arr) {
-    arr = arr.filter(function(value,index,self) {
-        
-        return self.indexOf(value) === index;
-    });
+    arr = remove_duplicate_entries(arr);
     localStorage.setItem('store', JSON.stringify(arr));
     var count_el = $('#count_items');
     count_el.html(arr.length);

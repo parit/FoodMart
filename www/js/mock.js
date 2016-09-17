@@ -1,3 +1,17 @@
+var remove_duplicate_entries = function(array){
+    var arr = {};
+
+    for ( var i=0, len=array.length; i < len; i++ )
+        arr[array[i]['description'] + " " + array[i]["expiringOn"]] = array[i];
+
+    array = new Array();
+    for ( var key in arr )
+        array.push(arr[key]);
+
+    return array
+}
+
+
 
 var food_exp_db = {
     strawberries: 10,
