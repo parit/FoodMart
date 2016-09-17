@@ -107,7 +107,7 @@ function getFoods(descriptions, callback) {
     //     });
     // }
     return res.map(function(el){
-        return {"description" : el, "days" : 5}
+        return {"name" : el, "expiring" : 5}
     });
 }
 
@@ -120,8 +120,8 @@ function process(content) {
         // call api to get foods getFoods
         var foods = getFoods(descriptions);
         foods = foods.map(function(food){
-            var expiringOn = (new Date()).setDate((new Date()).getDate() + food.days);
-            return { expiringOn: (new Date()).toLocaleDateString(), description: food.description};
+            var expiringOn = (new Date()).setDate((new Date()).getDate() + food.expiring);
+            return { expiring: (new Date()).toLocaleDateString(), name: food.name};
         });
         if (foods.length > 0)
             saveNewFoodItems(foods);
@@ -140,7 +140,7 @@ function renderExpiredList() {
             var foodName = $($(this).find('span.foodName')[0]).html();
             var expiring = $($(this).find('span.foodExpiring')[0]).html();
             removeElementsFromData(foodName, expiring, function(){});
-            render();
+            renderExpiredList();
         });
     }); 
 }
@@ -175,7 +175,7 @@ function saveNewFoodItems(items, callback) {
     var db =  window.openDatabase("dbtasty", 1, "Test DB", 1000000);
     db.transaction(function (tx) {
         for(var i = 0; i < items.length; i++) {
-            tx.executeSql('INSERT INTO FOOD (name, expiring) VALUES (?, ?)', [items[i].description, items[i].expiringOn],
+            tx.executeSql('INSERT INTO FOOD (name, expiring) VALUES (?, ?)', [items[i].name, items[i].expiring],
             function (tx, result) {
                 console.log(result);
             }, dbError);
