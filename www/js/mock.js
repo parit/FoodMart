@@ -1,5 +1,5 @@
 
-var database_obj = {
+var food_exp_db = {
     strawberries: 10,
     brocolli: 20,
     banana: 5,
@@ -9,11 +9,12 @@ var database_obj = {
     milk: 4,
     cheese: 6
 
+
 };
 
-var database=[];
-for (var key in database_obj){
-    database.push(key);
+var food_db=[];
+for (var key in food_exp_db){
+    food_db.push(key);
 }
 
-console.log(database)
+console.log(food_db)
