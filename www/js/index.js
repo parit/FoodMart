@@ -50,13 +50,8 @@ var app = {
         if(store) {
             var count = JSON.parse(store).length;
             count_el.html(count);
-            if (count === 0) {
-                    count_el.hide()
-            } else {
-                count_el.show()
-            }
-        }else{
-            count_el.hide()
+            count_el.show()
+
         }
     },
 
