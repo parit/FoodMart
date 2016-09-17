@@ -112,12 +112,21 @@ function render()
     var ul = $('ul');
     food.map(function(f){
         var diff = currentDate.data() - (new Date()).setDate(f.expiringOn);
-        var li = $('<li><span class="foodName"/><span> </span> <span> ' + f.expiringOn +'</li>');
+        var li = $('<li><span class="foodName"/>'+ f.description + '<span> </span> <span class="foodExpiring"> ' + f.expiringOn +'</li>');
         ul.append(li);
     });
     $('#listing').html(ul);
-}   
+    $('#listing ul li').on('swipe', function(e){
+        var foodName = $($(this).find('span.foodName')[0]).html();
+        var expiring = $($(this).find('span.foodExpiring')[0]).html();
+        removeElementsFromData(foodName,expiring);
+        render();
+    });
+}
 
+function removeElementsFromData(foodName, foodExpring) {
+
+}
     
 function retrieveFoodItems() {
     db.transaction(function (tx) {
