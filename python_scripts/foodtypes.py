@@ -55,5 +55,12 @@ def food_type(obj):
 	print(most_common(mgroups))
 	return most_common(mgroups)
 
+def foods_list(foodlist):
+	foodtypes=[]
+	for food in foodlist:
+		foodtypes.append(food_type(food))
+
+	return foodtypes
+
 if __name__ == "__main__":
 	food_type("cucumber")
