@@ -130,7 +130,8 @@ function removeElementsFromData(foodName, foodExpiring)
 }
 
 function setStoreItems(arr) {
-    arr.filter(function(value,index,self) {
+    arr = arr.filter(function(value,index,self) {
+        
         return self.indexOf(value) === index;
     });
     localStorage.setItem('store', JSON.stringify(arr));
