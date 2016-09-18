@@ -14,7 +14,8 @@ function getData(content, callback) {
                   };
     
     var cont = JSON.stringify(request);
-    
+
+    $.mobile.loading( 'show');
     $.ajax({
             url: CV_URL, 
             data: cont, 
@@ -136,7 +137,6 @@ function sortFood(food_list){
     food_list.sort(function(a, b){
         var keyA = new Date(a.expiringOn);
         var keyB = new Date(b.expiringOn);
-        // Compare the 2 dates
         if(keyA < keyB) return -1;
         if(keyA > keyB) return 1;
         return 0;

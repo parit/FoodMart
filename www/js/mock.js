@@ -35,5 +35,3 @@ var food_db=[];
 for (var key in food_exp_db){
     food_db.push(key);
 }
-
-console.log(food_db)
