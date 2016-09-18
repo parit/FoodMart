@@ -74,11 +74,12 @@ function getFoods(descriptions, callback) {
         if (found) {
             res.push(descriptions[i]);
         }
-    }   
+    }
     return res.map(function(el){
         return {"description" : el, "days" : 5}
     });
 }
+
 
 // call this method after taking the picture
 function process(content) {
@@ -106,7 +107,7 @@ function renderExpiredList() {
     var ul = $('#list-expired');
     ul.html('');
     storeList.forEach(function(element) {
-        ul.append($('<li><span class="foodName">'+ element.description + '</span> <span class="foodExpiring"> ' + element.expiringOn +'</li>'));
+        ul.append($('<li><span class="foodName">'+ element.description + '</span> <span class="foodExpiring" style="float:right"> ' + element.expiringOn +'</li>'));
     });
     
     if (ul.hasClass('ui-listview')) {

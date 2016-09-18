@@ -81,7 +81,7 @@ var app = {
         }, function(message){
               alert('Failed because: ' + message);    
         }, {
-            qualityType: 100,
+            quality: 50,
             destinationType: Camera.DestinationType.DATA_URL,
         });
     },
