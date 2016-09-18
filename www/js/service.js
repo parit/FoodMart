@@ -38,21 +38,41 @@ function processDescriptions(data)
     var descriptions = [];
     var textAnnotations = data.responses[0].textAnnotations; 
 
+    var prev;
+    var str = [];
     for (var i = 0; i < textAnnotations.length; i++) {
-        var description = [textAnnotations[i].description];
-        for (var j = i + 1; j < textAnnotations.length; j++) {
-            if (alreadyConsideredIndexes.indexOf(j) == -1) 
-            {
-                var diff = Math.abs(textAnnotations[i].boundingPoly.vertices[0].y);
-                if (diff < 4) 
-                {
-                    description.push(textAnnotations[j].description);
-                    alreadyConsideredIndexes.push(j);
-                }
+        if (i === 0) {
+            prev = textAnnotations[i];
+            str.push(textAnnotations[i].description);
+        } else {
+            var current = textAnnotations[i];
+            var diff = Math.abs(prev.boundingPoly.vertices[0].y - current.boundingPoly.vertices[0].y);
+            if (diff < 4) {
+                str.push(current.description)
+            } else {
+                descriptions.push(str.join(' '));
+                str = [];        
             }
         }
-        descriptions.push(description.join(' '));
     }
+    if (str.length > 0) {
+        descriptions.push(str.join(' '));
+    }    
+    // for (var i = 0; i < textAnnotations.length; i++) {
+    //     var description = [textAnnotations[i].description];
+    //     for (var j = i + 1; j < textAnnotations.length; j++) {
+    //         if (alreadyConsideredIndexes.indexOf(j) == -1) 
+    //         {
+    //             var diff = Math.abs(textAnnotations[i].boundingPoly.vertices[0].y);
+    //             if (diff < 4) 
+    //             {
+    //                 description.push(textAnnotations[j].description);
+    //                 alreadyConsideredIndexes.push(j);
+    //             }
+    //         }
+    //     }
+    //     descriptions.push(description.join(' '));
+    // }
     return descriptions;
 }
 
