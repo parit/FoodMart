@@ -2,7 +2,7 @@ var remove_duplicate_entries = function(array){
     var arr = {};
 
     for ( var i=0, len=array.length; i < len; i++ )
-        arr[array[i]['description'] + " " + array[i]["expiringOn"]] = array[i];
+        arr[array[i]['description'].toLowerCase() + " " + array[i]["expiringOn"]] = array[i];
 
     array = new Array();
     for ( var key in arr )
@@ -11,7 +11,9 @@ var remove_duplicate_entries = function(array){
     return array
 }
 
-
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.toLowerCase().slice(1);
+}
 
 var food_exp_db = {
     strawberries: 10,
@@ -28,7 +30,16 @@ var food_exp_db = {
     yoghurt: 7,
     cucumber: 4,
     onion: 21,
-    lychee: 5
+    lychee: 5,
+    erdbeer: 10,
+    schweinswurst: 5,
+    zwiebel: 21,
+    milch: 4,
+    apfel: 7,
+    eier: 14,
+    karotte: 4,
+    brot:3,
+    poulet:5
 };
 
 var food_db=[];

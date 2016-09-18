@@ -120,7 +120,7 @@ function getFoodsAccurate(descriptions, callback) {
 
         if (found) {
             console.log(food_exp_db[key]);
-            res.push({"description":descriptions[i], "days":food_exp_db[key]});
+            res.push({"description":capitalizeFirstLetter(descriptions[i]), "days":food_exp_db[key]});
         }
     }
 
