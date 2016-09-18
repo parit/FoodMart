@@ -38,7 +38,7 @@ function processDescriptions(data)
     var descriptions = [];
     var textAnnotations = data.responses[0].textAnnotations; 
 
-    var prev;
+/*    var prev;
     var str = [];
     for (var i = 0; i < textAnnotations.length; i++) {
         if (i === 0) {
@@ -47,32 +47,33 @@ function processDescriptions(data)
         } else {
             var current = textAnnotations[i];
             var diff = Math.abs(prev.boundingPoly.vertices[0].y - current.boundingPoly.vertices[0].y);
-            if (diff < 4) {
+            if (diff < 10) {
                 str.push(current.description)
             } else {
                 descriptions.push(str.join(' '));
-                str = [];        
+                prev=current
+                str = [prev.description];
             }
         }
     }
     if (str.length > 0) {
         descriptions.push(str.join(' '));
-    }    
-    // for (var i = 0; i < textAnnotations.length; i++) {
-    //     var description = [textAnnotations[i].description];
-    //     for (var j = i + 1; j < textAnnotations.length; j++) {
-    //         if (alreadyConsideredIndexes.indexOf(j) == -1) 
-    //         {
-    //             var diff = Math.abs(textAnnotations[i].boundingPoly.vertices[0].y);
-    //             if (diff < 4) 
-    //             {
-    //                 description.push(textAnnotations[j].description);
-    //                 alreadyConsideredIndexes.push(j);
-    //             }
-    //         }
-    //     }
-    //     descriptions.push(description.join(' '));
-    // }
+    }    */
+    for (var i = 0; i < textAnnotations.length; i++) {
+        var description = [textAnnotations[i].description];
+        for (var j = i + 1; j < textAnnotations.length; j++) {
+            if (alreadyConsideredIndexes.indexOf(j) == -1)
+            {
+                var diff = Math.abs(textAnnotations[i].boundingPoly.vertices[0].y);
+                if (diff < 4)
+                {
+                    description.push(textAnnotations[j].description);
+                    alreadyConsideredIndexes.push(j);
+                }
+            }
+        }
+        descriptions.push(description.join(' '));
+    }
     return descriptions;
 }
 
@@ -100,6 +101,47 @@ function getFoods(descriptions, callback) {
     });
 }
 
+function getFoodsAccurate(descriptions, callback) {
+    // call api and filter foods
+    var res = [];
+    console.log(food_exp_db);
+    for (var i = 0; i < descriptions.length; i++) {
+        var found = false;
+        for (var key in food_exp_db) {
+            // Cloud vision API sometimes outputs the whole text in one object randomly.
+            if ((descriptions[i].toLowerCase().indexOf(key) !== -1) && descriptions[i].length < 15) {
+                found = true;
+                console.log(descriptions[i]);
+                break;
+            }
+
+        }
+
+        if (found) {
+            console.log(food_exp_db[key]);
+            res.push({"description":descriptions[i], "days":food_exp_db[key]});
+        }
+    }
+
+    return res
+}
+
+function addDays(date, days) {
+    var result = new Date(date);
+    result.setDate(result.getDate() + days);
+    return result;
+}
+
+function sortFood(food_list){
+    food_list.sort(function(a, b){
+        var keyA = new Date(a.expiringOn);
+        var keyB = new Date(b.expiringOn);
+        // Compare the 2 dates
+        if(keyA < keyB) return -1;
+        if(keyA > keyB) return 1;
+        return 0;
+    });
+}
 
 // call this method after taking the picture
 function process(content) {
@@ -111,11 +153,21 @@ function process(content) {
         var descriptions = processDescriptions(data);
         // call api to get foods getFoods
         // [{"description" : "", "days" : ""}] 
-        var foods = getFoods(descriptions);
+        var foods = getFoodsAccurate(descriptions);
+
         foods = foods.map(function(food){
-            var expiringOn = (new Date()).setDate((new Date()).getDate() + food.days);
-            return { expiringOn: (new Date()).toLocaleDateString(), description: food.description};
+            var expiringOn = addDays((new Date()).setDate((new Date()).getDate()), food.days);
+            var expiringOn = expiringOn.toLocaleDateString('en-GB', {
+                day : 'numeric',
+                month : 'short',
+                year : 'numeric'
+            }).split(' ').join('-');
+            return { expiringOn: expiringOn.toLocaleString(), description: food.description};
         });
+
+        sortFood(foods)
+
+
         if (foods.length > 0)
             // [{"description" : "", "expiringOn" : ""}]
             saveNewFoodItems(foods);
@@ -171,5 +223,6 @@ function saveNewFoodItems(items) {
     items.forEach(function(element) {
         store.push(element);   
     });
+    sortFood(store)
     setStoreItems(store);
 }
